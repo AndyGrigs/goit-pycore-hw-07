@@ -34,7 +34,7 @@ class Record:
 
     def add_phone(self, phone):
         phone_obj = Phone(phone)
-        phone_obj.validate()  # Let the exception propagate if invalid
+        phone_obj.validate()  
         self.phones.append(phone_obj)
 
     def remove_phone(self, phone_value):
@@ -81,15 +81,15 @@ class AddressBook(UserDict):
         for record in self.values():
             birthday = getattr(record, 'birthday', None)
             if birthday is not None:
-                # Create a birthday date object for the current year
+                
                 birthday_this_year = date(today.year, birthday.date.month, birthday.date.day)
                 
-                # If birthday has already passed this year, use the next year
+                
                 if birthday_this_year < today:
                     birthday_this_year = date(today.year + 1, birthday.date.month, birthday.date.day)
                 
                 if birthday_this_year <= one_week_from_today:
-                    if birthday_this_year.weekday() >= 5:  # If birthday falls on a weekend
+                    if birthday_this_year.weekday() >= 5:  
                         next_monday = birthday_this_year + timedelta(days=(7 - birthday_this_year.weekday()))
                         congratulation_date = next_monday
                     else:
